@@ -4,9 +4,9 @@ locals {
   user_group_membership = flatten([
     for group in local.groups :
     [for user in group.users : {
-        key                 = join("_", [group.name, user])
-        group_name = group.name,
-        user_name  = user
+      key        = join("_", [group.name, user])
+      group_name = group.name,
+      user_name  = user
       }
     ]
   ])
@@ -26,6 +26,6 @@ resource "aws_identitystore_group_membership" "membership" {
 
   identity_store_id = tolist(data.aws_ssoadmin_instances.this.identity_store_ids)[0]
 
-  group_id          = aws_identitystore_group.groups[each.value.group_name].group_id
-  member_id         = aws_identitystore_user.users[each.value.user_name].user_id
+  group_id  = aws_identitystore_group.groups[each.value.group_name].group_id
+  member_id = aws_identitystore_user.users[each.value.user_name].user_id
 }

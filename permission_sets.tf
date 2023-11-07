@@ -98,7 +98,7 @@ resource "aws_ssoadmin_permissions_boundary_attachment" "customer_managed_bounda
   instance_arn = tolist(data.aws_ssoadmin_instances.this.arns)[0]
 
   permission_set_arn = aws_ssoadmin_permission_set.permission_sets[each.value.permission_set_name].arn
-  
+
   permissions_boundary {
     customer_managed_policy_reference {
       name = each.value.customer_boundary_policy_name

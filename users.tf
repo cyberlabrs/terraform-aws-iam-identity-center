@@ -2,9 +2,9 @@ locals {
   users = var.users == null ? [] : var.users
 
   customized_users = flatten([
-    for user in local.users :{
-      user_name = user.user_name,
-      display_name       = user.display_name,
+    for user in local.users : {
+      user_name    = user.user_name,
+      display_name = user.display_name,
 
       locale             = try(user.locale, null),
       nickname           = try(user.nickname, null),
@@ -14,11 +14,11 @@ locals {
       title              = try(user.title, null),
       user_type          = try(user.user_type, null),
 
-      name = try(user.name, {}) != null ? user.name : {},
-      emails = try(user.emails, []) != null ? user.emails : [],
+      name          = try(user.name, {}) != null ? user.name : {},
+      emails        = try(user.emails, []) != null ? user.emails : [],
       phone_numbers = try(user.phone_numbers, []) != null ? user.phone_numbers : [],
-      addresses = try(user.addresses, []) != null ? user.addresses : []
-    }])
+      addresses     = try(user.addresses, []) != null ? user.addresses : []
+  }])
 }
 
 resource "aws_identitystore_user" "users" {
