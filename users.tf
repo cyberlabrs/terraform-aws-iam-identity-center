@@ -1,5 +1,5 @@
 locals {
-  users = var.users == null ? [] : var.users
+  users = local.config.users == null ? [] : local.config.users
 
   customized_users = flatten([
     for user in local.users : {

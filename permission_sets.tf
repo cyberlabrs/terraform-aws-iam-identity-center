@@ -1,5 +1,5 @@
 locals {
-  permission_sets = var.permission_sets == null ? [] : var.permission_sets
+  permission_sets = local.config.permission_sets == null ? [] : local.config.permission_sets
 
   managed_policies_attachments = flatten([
     for ps in local.permission_sets :

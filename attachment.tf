@@ -1,5 +1,5 @@
 locals {
-  attachments = var.attachments == null ? [] : var.attachments
+  attachments = local.config.attachments == null ? [] : local.config.attachments
 
   customized_attachments = flatten([
     for attachment in local.attachments :

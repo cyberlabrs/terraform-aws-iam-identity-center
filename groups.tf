@@ -1,5 +1,5 @@
 locals {
-  groups = var.groups == null ? [] : var.groups
+  groups = local.config.groups == null ? [] : local.config.groups
 
   user_group_membership = flatten([
     for group in local.groups :
