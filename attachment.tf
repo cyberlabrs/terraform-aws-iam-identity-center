@@ -1,10 +1,10 @@
 locals {
-  attachments = var.attachments == null ? [] : var.attachments
+  attachments = local.config.attachments == null ? [] : local.config.attachments
 
   customized_attachments = flatten([
     for attachment in local.attachments :
     {
-      key = join("_", [attachment.principal_type, coalesce(attachment.permission_set_arn, attachment.permission_set_name), coalesce(attachment.principal_id, attachment.principal_group_name), attachment.target_account_id]) 
+      key = join("_", [attachment.principal_type, coalesce(attachment.permission_set_arn, attachment.permission_set_name), coalesce(attachment.principal_id, attachment.principal_group_name), attachment.target_account_id])
 
       principal_type = attachment.principal_type
 
