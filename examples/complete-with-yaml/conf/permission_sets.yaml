@@ -19,21 +19,18 @@ permission_sets:
   # example for inline with json path
   - name: "CustomizedS3ReadAccessInline"
     description: "S3 read only"
-    # inline_policy    : <<EOF
-    # {
-    #   "Version":"2012-10-17",
-    #   "Statement":[
-    #     {
-    #         "Effect":"Allow",
-    #         "Action":[
-    #           "s3:GetObject",
-    #           "s3:GetObjectVersion"
-    #         ],
-    #         "Resource":"arn:aws:s3:::example/*"
-    #     }
-    #   ]
-    # }
-    # EOF
+    inline_policy:
+      {
+        "Version": "2012-10-17",
+        "Statement":
+          [
+            {
+              "Effect": "Allow",
+              "Action": ["s3:GetObject", "s3:GetObjectVersion"],
+              "Resource": "arn:aws:s3:::example/*",
+            },
+          ],
+      }
     session_duration: "PT4H"
     boundary_policy:
       type: "MANAGED"
